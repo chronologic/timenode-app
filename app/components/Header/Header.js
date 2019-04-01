@@ -73,12 +73,6 @@ class Header extends Component {
 
     return (
       <div className="header">
-        <a
-          href="#"
-          className="btn-link toggle-sidebar d-lg-none pg pg-menu"
-          data-toggle="sidebar"
-        />
-
         <div className="brand inline">
           <img
             src="img/logo-white.png"

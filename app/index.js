@@ -3,22 +3,17 @@ import { render } from 'react-dom';
 import 'jquery.scrollbar';
 import 'bootstrap';
 import 'select2';
-import 'bootstrap-timepicker';
-import './plugins/bootstrap-datepicker/js/bootstrap-datepicker.js';
 import { Provider } from 'mobx-react';
 import { Router, Route } from 'react-router-dom';
 import App from './components/App';
 import { services } from './services';
 import { stores, history } from './stores';
-import { isRunningInElectron } from './lib/electron-util';
 
 const injectables = Object.assign({}, stores, services);
 
 const rootEl = document.getElementById('root');
 
-if (isRunningInElectron()) {
-  history.push('/timenode?mode=electron');
-}
+history.push('/timenode?mode=electron');
 
 // ESLint will warn about any use of eval(), even this one
 // eslint-disable-next-line

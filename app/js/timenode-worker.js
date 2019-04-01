@@ -282,7 +282,6 @@ class TimeNodeWorker {
   async _getBountiesForTimestampBucket(windowStart) {
     const bucket = await this.bucketHelper.calcBucketForTimestamp(windowStart);
 
-    this._transactionFetcher.startLazy();
     const transactions = await this._transactionFetcher.getTransactionsInBuckets(
       [bucket],
       true,

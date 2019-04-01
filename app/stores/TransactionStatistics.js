@@ -2,23 +2,16 @@ import { observable } from 'mobx';
 
 export class TransactionStatistics {
   @observable
-  efficiency = null;
+  efficiency = 100;
 
   @observable
-  transactionsScheduledInNextHoursAmount = null;
+  transactionsScheduledInNextHoursAmount = 10;
 
   nextHours = 24;
   pastHours = 24;
 
   _transactionHelper;
   _transactionStore;
-
-  constructor(transactionHelper, transactionStore) {
-    this._transactionHelper = transactionHelper;
-    this._transactionStore = transactionStore;
-
-    this._initialize();
-  }
 
   /**
    * @private

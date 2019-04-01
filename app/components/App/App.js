@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SidePanel from '../SidePanel/SidePanel';
-import SearchOverlay from '../Search/SearchOverlay';
 import Header from '../Header/Header';
 import { CustomProviderModal, ReleaseNotesModal } from '../Modals';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import AwaitingMining from '../Common/AwaitingMining';
-import Faucet from '../Common/Faucet';
-import TransactionsRoute from '../TransactionsRoute/TransactionsRoute';
 import TimeNodeRoute from '../TimeNode/TimeNodeRoute';
-import { ScheduleRoute } from '../ScheduleWizard/ScheduleRoute';
 import URLNotFound from '../Common/URLNotFound';
 import { inject } from 'mobx-react';
 import { isRunningInElectron } from '../../lib/electron-util';
@@ -74,27 +68,18 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <SidePanel {...this.props} />
-        <div className="page-container">
+        {/* Hacky way to disable padding in the Pages template */}
+        <div className="page-container" style={{ padding: '0px' }}>
           <Header updateSearchState={this.updateSearchState} history={this.props.history} />
           <div className="page-content-wrapper">
             <div className="content sm-gutter">
               <Switch>
-                <Route exact path="/" component={ScheduleRoute} />
-                <Route path="/awaiting/:type/:hash" component={AwaitingMining} />
-                <Route path="/transactions" component={TransactionsRoute} />
                 <Route path="/timenode" component={TimeNodeRoute} />
-                <Route path="/faucet" component={Faucet} />
                 <Route component={URLNotFound} />
               </Switch>
             </div>
           </div>
         </div>
-
-        {this.state.showSearchOverlay && (
-          <SearchOverlay updateSearchState={this.updateSearchState} history={this.props.history} />
-        )}
-
         <CustomProviderModal />
         <ReleaseNotesModal />
         <NetworkChooserModal />

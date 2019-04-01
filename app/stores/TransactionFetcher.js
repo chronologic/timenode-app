@@ -32,7 +32,7 @@ export default class TransactionFetcher {
     this._web3 = web3;
     this._features = features;
 
-    this.startLazy();
+    //this.startLazy();
   }
 
   async startLazy() {
